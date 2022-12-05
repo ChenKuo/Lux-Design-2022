@@ -125,7 +125,7 @@ def get_obs_space(config: EnvConfig, agent_names: List[str], agent: int = 0):
         )
         if config.UNIT_ACTION_QUEUE_SIZE != 1:
             # note, action queue space copied over from act_space.py
-            obs_dict["action_queue"] = ActionsQueue(spaces.Box(low=np.array([0,0,0,0,-1]), high=np.array([5,4,4,config.max_transfer_amount, 100000]), shape=(5,), dtype=np.int64))
+            obs_dict["action_queue"] = ActionsQueue(spaces.Box(low=np.array([0,0,0,0,-1]), high=np.array([5,4,4,config.max_transfer_amount, 100000]), shape=(5,), dtype=np.int64), config.UNIT_ACTION_QUEUE_SIZE)
         units_obs_space[agent_name] = spaces.Dict(obs_dict)
 
     obs_space["units"] = spaces.Dict(units_obs_space)
